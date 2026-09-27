@@ -32,14 +32,14 @@ jobs:
           password: ${{ github.token }}
 
       - name: Build and push API
-        uses: docker/build-push-action@v5
+        uses: docker/build-push-action@v7
         with:
           context: services/api
           push: true
           tags: ghcr.io/${{ github.repository }}/api:${{ github.ref_name }}
 
       - name: Build and push agent-runtime
-        uses: docker/build-push-action@v5
+        uses: docker/build-push-action@v7
         with:
           context: services/agent-runtime
           push: true
