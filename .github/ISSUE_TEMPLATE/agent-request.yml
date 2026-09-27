@@ -1,0 +1,29 @@
+name: Agent Request
+description: Request a new agent type or enhancement
+title: "[Agent]: "
+labels: ["enhancement", "agent"]
+body:
+  - type: textarea
+    id: description
+    attributes:
+      label: Agent Description
+      description: Describe the agent you would like to see added.
+    validations:
+      required: true
+  - type: dropdown
+    id: tier
+    attributes:
+      label: Agent Tier
+      options:
+        - T0 (Critical Path)
+        - T1 (Standard)
+        - T2 (Background)
+    validations:
+      required: true
+  - type: textarea
+    id: use_case
+    attributes:
+      label: Use Case
+      description: What problem does this agent solve?
+    validations:
+      required: true

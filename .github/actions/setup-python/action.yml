@@ -1,0 +1,27 @@
+name: Setup Python
+description: Set up Python with uv
+
+inputs:
+  python-version:
+    description: Python version
+    default: "3.12"
+
+runs:
+  using: composite
+  steps:
+    - name: Install uv
+      uses: astral-sh/setup-uv@v3
+      with:
+        version: "latest"
+
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: ${{ inputs.python-version }}
+
+    - name: Install dependencies
+      shell: bash
+      run: |
+        uv pip install -e "services/api[dev]"
+        uv pip install -e "services/agent-runtime[dev]"
+        uv pip install -e "services/rag-core[dev]"

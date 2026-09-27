@@ -1,0 +1,18 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "AgentIdentity",
+  "type": "object",
+  "required": ["agent_id", "agent_type", "tier", "scopes"],
+  "properties": {
+    "agent_id": { "type": "string", "pattern": "^[a-z0-9-]+$" },
+    "agent_type": {
+      "type": "string",
+      "enum": ["mesh-router", "load-balancer", "circuit-breaker"]
+    },
+    "tier": { "type": "string", "enum": ["T0", "T1", "T2"] },
+    "scopes": { "type": "array", "items": { "type": "string" } },
+    "cloud_provider": { "type": "string", "enum": ["aws", "azure", "gcp", "multi"] },
+    "namespace": { "type": "string" },
+    "service_account": { "type": "string" }
+  }
+}

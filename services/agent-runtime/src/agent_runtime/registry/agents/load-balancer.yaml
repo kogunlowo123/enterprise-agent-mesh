@@ -1,0 +1,12 @@
+agent_id: load-balancer
+agent_type: load-balancer
+tier: T0
+description: Manages traffic distribution with health-aware routing
+scopes:
+  - mesh:route
+  - mesh:read_topology
+  - health:read
+  - health:write
+graph: load_balancer_graph
+max_turns: 3
+timeout_seconds: 15

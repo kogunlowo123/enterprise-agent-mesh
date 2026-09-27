@@ -1,0 +1,35 @@
+{
+  "id": null,
+  "title": "Enterprise Agent Mesh - Agent Fleet",
+  "tags": ["agent-mesh", "agents"],
+  "timezone": "browser",
+  "schemaVersion": 38,
+  "version": 1,
+  "refresh": "30s",
+  "panels": [
+    {
+      "id": 1,
+      "title": "Active Agent Sessions",
+      "type": "stat",
+      "gridPos": {"h": 4, "w": 4, "x": 0, "y": 0},
+      "targets": [
+        {
+          "expr": "sum(agent_active_sessions{job=\"enterprise-agent-mesh\"})",
+          "legendFormat": "Active Sessions"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "title": "Agent Requests Rate",
+      "type": "graph",
+      "gridPos": {"h": 8, "w": 12, "x": 0, "y": 4},
+      "targets": [
+        {
+          "expr": "rate(agent_requests_total[5m])",
+          "legendFormat": "{{agent_type}} {{tier}}"
+        }
+      ]
+    }
+  ]
+}

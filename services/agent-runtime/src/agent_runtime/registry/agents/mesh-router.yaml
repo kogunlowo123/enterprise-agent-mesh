@@ -1,0 +1,19 @@
+agent_id: mesh-router
+agent_type: mesh-router
+tier: T0
+description: Routes agent requests to optimal mesh endpoints
+scopes:
+  - mesh:route
+  - mesh:read_topology
+  - circuit:read_state
+  - health:read
+graph: mesh_router_graph
+max_turns: 5
+timeout_seconds: 30
+llm_config:
+  fallback_order:
+    - bedrock
+    - azure_openai
+    - vertex_ai
+  max_tokens: 512
+  temperature: 0.0

@@ -1,0 +1,15 @@
+name: Setup Terraform
+description: Set up Terraform
+
+inputs:
+  terraform-version:
+    description: Terraform version
+    default: "1.8.0"
+
+runs:
+  using: composite
+  steps:
+    - name: Setup Terraform
+      uses: hashicorp/setup-terraform@v3
+      with:
+        terraform_version: ${{ inputs.terraform-version }}
