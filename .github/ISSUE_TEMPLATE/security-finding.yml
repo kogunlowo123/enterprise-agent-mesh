@@ -1,0 +1,24 @@
+name: Security Finding
+description: Report a security vulnerability (non-critical only)
+title: "[Security]: "
+labels: ["security"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        For critical vulnerabilities, email security@enterprise-agent-mesh.io instead.
+  - type: textarea
+    id: description
+    attributes:
+      label: Finding Description
+    validations:
+      required: true
+  - type: dropdown
+    id: severity
+    attributes:
+      label: Severity
+      options:
+        - Low
+        - Medium
+    validations:
+      required: true

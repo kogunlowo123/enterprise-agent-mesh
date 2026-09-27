@@ -1,0 +1,9 @@
+version: "3.9"
+
+services:
+  api:
+    environment:
+      DEBUG: "true"
+      LOG_LEVEL: DEBUG
+    volumes:
+      - ./services/api/src:/app/src

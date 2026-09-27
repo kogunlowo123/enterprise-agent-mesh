@@ -1,0 +1,10 @@
+agent_id: mesh-router
+agent_type: mesh-router
+tier: T0
+scopes:
+  - mesh:route
+  - mesh:read_topology
+  - circuit:read_state
+cloud_provider: multi
+namespace: enterprise-agent-mesh
+service_account: mesh-router-sa

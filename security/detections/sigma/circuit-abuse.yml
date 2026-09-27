@@ -1,0 +1,20 @@
+title: Circuit Breaker Abuse Attempt
+id: 9e4b8d2a-3c5f-4e7b-9f1c-2d3e4f5a6b7c
+status: experimental
+description: Detects attempts to repeatedly open circuit breakers for DoS
+logsource:
+  service: enterprise-agent-mesh
+  product: circuit-breaker
+detection:
+  selection:
+    event_type: circuit_open
+    node_id|re: ".*"
+    count|gte: 10
+    time_window_minutes|lte: 5
+  condition: selection
+falsepositives:
+  - Legitimate cascading failures during incidents
+level: medium
+tags:
+  - attack.impact
+  - attack.t1498

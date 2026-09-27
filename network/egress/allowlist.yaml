@@ -1,0 +1,16 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: ServiceEntry
+metadata:
+  name: external-llm-apis
+  namespace: enterprise-agent-mesh
+spec:
+  hosts:
+    - bedrock-runtime.us-east-1.amazonaws.com
+    - "*.openai.azure.com"
+    - us-central1-aiplatform.googleapis.com
+  ports:
+    - number: 443
+      name: https
+      protocol: HTTPS
+  location: MESH_EXTERNAL
+  resolution: DNS

@@ -1,0 +1,19 @@
+title: Agent Mesh Authentication Bypass Attempt
+id: 8f3a9c1d-2b4e-4f6a-8d9c-1e2f3a4b5c6d
+status: experimental
+description: Detects attempts to bypass mesh authentication
+logsource:
+  service: enterprise-agent-mesh
+  product: api
+detection:
+  selection:
+    event_type: auth_failure
+    failure_count|gte: 5
+    time_window_seconds|lte: 60
+  condition: selection
+falsepositives:
+  - Misconfigured agent clients
+level: high
+tags:
+  - attack.initial_access
+  - attack.t1078

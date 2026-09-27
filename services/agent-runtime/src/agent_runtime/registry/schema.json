@@ -1,0 +1,42 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "AgentProfile",
+  "type": "object",
+  "required": ["agent_id", "agent_type", "tier", "scopes"],
+  "properties": {
+    "agent_id": {
+      "type": "string",
+      "pattern": "^[a-z0-9-]+$",
+      "description": "Unique agent identifier"
+    },
+    "agent_type": {
+      "type": "string",
+      "enum": ["mesh-router", "load-balancer", "circuit-breaker"],
+      "description": "Agent type classification"
+    },
+    "tier": {
+      "type": "string",
+      "enum": ["T0", "T1", "T2"],
+      "description": "Agent tier (T0=critical, T1=standard, T2=background)"
+    },
+    "scopes": {
+      "type": "array",
+      "items": {"type": "string"},
+      "description": "Required permission scopes"
+    },
+    "graph": {
+      "type": "string",
+      "description": "LangGraph graph identifier"
+    },
+    "max_turns": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 20
+    },
+    "timeout_seconds": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 300
+    }
+  }
+}

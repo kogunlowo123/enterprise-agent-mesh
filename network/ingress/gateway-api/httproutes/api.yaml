@@ -1,0 +1,19 @@
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
+metadata:
+  name: api
+  namespace: enterprise-agent-mesh
+spec:
+  parentRefs:
+    - name: enterprise-agent-mesh
+  hostnames:
+    - "api.enterprise-agent-mesh.io"
+  rules:
+    - matches:
+        - path:
+            type: PathPrefix
+            value: /api/v1/
+      backendRefs:
+        - name: api
+          port: 8000
+          weight: 100

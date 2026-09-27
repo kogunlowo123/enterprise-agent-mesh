@@ -1,0 +1,31 @@
+name: Terraform
+
+on:
+  push:
+    branches: [main]
+    paths: ["infra/**"]
+  pull_request:
+    paths: ["infra/**"]
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        cloud: [aws, azure, gcp]
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Terraform
+        uses: ./.github/actions/setup-terraform
+
+      - name: Terraform Init
+        run: terraform -chdir=infra/envs/${{ matrix.cloud }}/prod init -backend=false
+
+      - name: Terraform Validate
+        run: terraform -chdir=infra/envs/${{ matrix.cloud }}/prod validate
+
+      - name: Terraform Plan (PR only)
+        if: github.event_name == 'pull_request'
+        run: terraform -chdir=infra/envs/${{ matrix.cloud }}/prod plan -no-color
+        continue-on-error: true

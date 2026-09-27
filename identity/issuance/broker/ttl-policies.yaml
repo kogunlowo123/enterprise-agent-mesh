@@ -1,0 +1,15 @@
+ttl_policies:
+  T0:
+    default_ttl: 3600
+    max_ttl: 7200
+    refresh_window: 300
+
+  T1:
+    default_ttl: 1800
+    max_ttl: 3600
+    refresh_window: 180
+
+  T2:
+    default_ttl: 900
+    max_ttl: 1800
+    refresh_window: 60

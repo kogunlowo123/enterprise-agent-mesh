@@ -1,0 +1,16 @@
+agent_id: circuit-breaker
+agent_type: circuit-breaker
+tier: T1
+description: Manages circuit breaker state and isolates failing agents
+scopes:
+  - circuit:read_state
+  - circuit:control
+  - mesh:read_topology
+graph: circuit_breaker_graph
+max_turns: 3
+timeout_seconds: 10
+circuit_config:
+  failure_threshold: 5
+  recovery_timeout: 60
+  half_open_max_calls: 3
+  success_threshold: 2
