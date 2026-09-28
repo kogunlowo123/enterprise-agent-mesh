@@ -139,6 +139,7 @@ class CircuitBreaker:
     def force_open(self, reason: str = "") -> None:
         """Manually open the circuit."""
         with self._lock:
+            self._stats.last_failure_time = time.monotonic()
             self._transition_to(CircuitState.OPEN)
             logger.warning("Circuit %s force-opened: %s", self.node_id, reason)
 
